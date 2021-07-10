@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/firstSubject"
+        android:title="BDA"
+        android:icon="@drawable/first_subject_icon"/>
+
+    <item
+        android:id="@+id/secondSubject"
+        android:title="Cloud"
+        android:icon="@drawable/second_subject_icon"/>
+
+    <item
+        android:id="@+id/thirdSubject"
+        android:title="PDS"
+        android:icon="@drawable/third_subject_icon"/>
+
+    <item
+        android:id="@+id/fourthSubject"
+        android:title="Embedded"
+        android:icon="@drawable/fourth_subject_icon"/>
+
+    <item
+        android:id="@+id/fifthSubject"
+        android:title="Elective"
+        android:icon="@drawable/fifth_subject_icon"/>
+
+</menu>

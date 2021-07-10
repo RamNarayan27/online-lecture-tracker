@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_resource"
+    app:startDestination="@id/firstSubject">
+    <fragment
+        android:id="@+id/firstSubject"
+        android:name="com.example.onlinelecturetracker.FirstSubject"
+        android:label="first_subject_fragment"
+        tools:layout="@layout/first_subject_fragment" />
+    <fragment
+        android:id="@+id/secondSubject"
+        android:name="com.example.onlinelecturetracker.SecondSubject"
+        android:label="second_subject_fragment"
+        tools:layout="@layout/second_subject_fragment" />
+    <fragment
+        android:id="@+id/thirdSubject"
+        android:name="com.example.onlinelecturetracker.ThirdSubject"
+        android:label="third_subject_fragment"
+        tools:layout="@layout/third_subject_fragment" />
+    <fragment
+        android:id="@+id/fourthSubject"
+        android:name="com.example.onlinelecturetracker.FourthSubject"
+        android:label="fourth_subject_fragment"
+        tools:layout="@layout/fourth_subject_fragment" />
+    <fragment
+        android:id="@+id/fifthSubject"
+        android:name="com.example.onlinelecturetracker.FifthSubject"
+        android:label="fifth_subject_fragment"
+        tools:layout="@layout/fifth_subject_fragment" />
+</navigation>

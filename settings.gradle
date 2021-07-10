@@ -1,0 +1,2 @@
+rootProject.name = "Online Lecture Tracker"
+include ':app'
