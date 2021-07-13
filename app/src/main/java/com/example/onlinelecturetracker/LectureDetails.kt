@@ -6,5 +6,5 @@ data class LectureDetails(
     val lectureName: String,
     val type: String,
     val duration: Int,
-    val status: String
+    var status: String
 )
