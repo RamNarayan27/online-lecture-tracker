@@ -8,4 +8,13 @@
     <string name="lecture_name">Lecture Name</string>
     <string name="lecture">Lecture #</string>
     <string name="unit">Unit #</string>
+    <string name="enter_class_name">Enter Class Name</string>
+    <string name="enter_lecture_number">Enter Lecture Number</string>
+    <string name="enter_unit_number">Enter Unit Number</string>
+    <string name="enter_lecture_name">Enter Lecture Name</string>
+    <string name="enter_lecture_type">Enter Lecture Type</string>
+    <string name="enter_lecture_duration">Enter Lecture Duration</string>
+    <string name="enter_lecture_status">Enter Lecture Status</string>
+    <string name="enter_subject">Enter Subject</string>
+    <string name="submit">Submit</string>
 </resources>

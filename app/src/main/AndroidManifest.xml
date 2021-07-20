@@ -11,7 +11,8 @@
         android:theme="@style/Theme.OnlineLectureTracker">
         <activity
             android:name=".NewClassEntry"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/add_new_class" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
