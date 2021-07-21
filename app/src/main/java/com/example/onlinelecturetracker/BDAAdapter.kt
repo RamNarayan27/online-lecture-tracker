@@ -11,8 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 
 class BDAAdapter(private val context: Context, private val viewModel: FirstSubjectViewModel) :
@@ -46,12 +44,9 @@ class BDAAdapter(private val context: Context, private val viewModel: FirstSubje
             context.startActivity(intent)
         }
         holder.card.setOnLongClickListener {
-            Log.i("onLongClick","Works")
             deleteLecture(context,viewModel,position)
-            Toast.makeText(this.context,"Long Click",Toast.LENGTH_SHORT).show()
             true
         }
-        Log.i("onBindViewHolder",position.toString())
     }
 
     private fun deleteLecture(context: Context, viewModel: FirstSubjectViewModel, position: Int) {
@@ -78,10 +73,10 @@ class BDAAdapter(private val context: Context, private val viewModel: FirstSubje
     }
 
     class BDAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val unitNumber: TextView = itemView.findViewById(R.id.unit_number_input_layout_update)
-        val lectureNumber: TextView = itemView.findViewById(R.id.lecture_number_input_layout_update)
-        val lectureName: TextView = itemView.findViewById(R.id.lecture_name_input_layout_update)
-        val lectureType: TextView = itemView.findViewById(R.id.lecture_type_input_layout_update)
+        val unitNumber: TextView = itemView.findViewById(R.id.unit_number_input_layout)
+        val lectureNumber: TextView = itemView.findViewById(R.id.lecture_number_input_layout)
+        val lectureName: TextView = itemView.findViewById(R.id.lecture_name_input_layout)
+        val lectureType: TextView = itemView.findViewById(R.id.lecture_type_input_layout)
         val status: ImageView = itemView.findViewById(R.id.status)
         val duration: TextView = itemView.findViewById(R.id.duration)
         val card: CardView = itemView.findViewById(R.id.card_layout)

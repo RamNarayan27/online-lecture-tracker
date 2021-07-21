@@ -32,7 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/unit_number_input_layout_update"
+                android:id="@+id/unit_number_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -51,13 +51,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/unit" />
 
             <TextView
-                android:id="@+id/lecture_number_input_layout_update"
+                android:id="@+id/lecture_number_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toEndOf="@+id/lecture"
-                app:layout_constraintTop_toBottomOf="@+id/unit_number_input_layout_update" />
+                app:layout_constraintTop_toBottomOf="@+id/unit_number_input_layout" />
 
             <TextView
                 android:id="@+id/lectue_duration"
@@ -67,7 +67,7 @@
                 android:text="@string/duration"
                 app:layout_constraintEnd_toStartOf="@+id/duration"
                 app:layout_constraintHorizontal_bias="0.973"
-                app:layout_constraintStart_toEndOf="@+id/unit_number_input_layout_update"
+                app:layout_constraintStart_toEndOf="@+id/unit_number_input_layout"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -81,13 +81,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/lecture" />
 
             <TextView
-                android:id="@+id/lecture_name_input_layout_update"
+                android:id="@+id/lecture_name_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toEndOf="@+id/lname"
-                app:layout_constraintTop_toBottomOf="@+id/lecture_number_input_layout_update" />
+                app:layout_constraintTop_toBottomOf="@+id/lecture_number_input_layout" />
 
             <TextView
                 android:id="@+id/type"
@@ -103,13 +103,13 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/lecture_type_input_layout_update"
+                android:id="@+id/lecture_type_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toEndOf="@+id/type"
-                app:layout_constraintTop_toBottomOf="@+id/lecture_name_input_layout_update" />
+                app:layout_constraintTop_toBottomOf="@+id/lecture_name_input_layout" />
 
             <TextView
                 android:id="@+id/duration"
@@ -130,7 +130,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/lecture_type_input_layout_update"
+                app:layout_constraintStart_toEndOf="@+id/lecture_type_input_layout"
                 app:srcCompat="@drawable/done" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

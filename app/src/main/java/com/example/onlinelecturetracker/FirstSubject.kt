@@ -109,7 +109,7 @@ class FirstSubject : Fragment() {
 
         floatingActionButton.setOnClickListener {
             val intent = Intent(context, NewClassEntry::class.java).apply {
-                putExtra("Subject", "BDA")
+                putExtra("FragmentName","FirstSubject")
             }
             startActivity(intent)
         }
