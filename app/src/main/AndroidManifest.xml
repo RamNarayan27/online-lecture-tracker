@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineLectureTracker">
         <activity android:name=".UpdateLecture"
-            android:label="@string/update_lecture"/>
+            android:label="@string/update_lecture"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".NewClassEntry"
             android:label="@string/add_new_class"

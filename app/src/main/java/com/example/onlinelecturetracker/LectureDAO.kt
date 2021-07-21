@@ -28,4 +28,10 @@ interface LectureDAO {
 
     @Query("SELECT SUM(duration) from lectures_table WHERE status='Pending'")
     fun getTotalLectureDuration() : LiveData<Int>
+
+    @Delete
+    suspend fun deleteLecture(lecture: LectureDetails)
+
+    @Query("DELETE FROM lectures_table")
+    suspend fun deleteAllLectures()
 }

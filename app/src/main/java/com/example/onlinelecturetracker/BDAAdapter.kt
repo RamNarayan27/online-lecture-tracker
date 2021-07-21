@@ -1,5 +1,6 @@
 package com.example.onlinelecturetracker
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -8,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 
-class BDAAdapter(private val context: Context) :
+class BDAAdapter(private val context: Context, private val viewModel: FirstSubjectViewModel) :
     RecyclerView.Adapter<BDAAdapter.BDAViewHolder>() {
 
     private var details = emptyList<LectureDetails>()
@@ -42,9 +45,28 @@ class BDAAdapter(private val context: Context) :
             }
             context.startActivity(intent)
         }
+        holder.card.setOnLongClickListener {
+            Log.i("onLongClick","Works")
+            deleteLecture(context,viewModel,position)
+            Toast.makeText(this.context,"Long Click",Toast.LENGTH_SHORT).show()
+            true
+        }
         Log.i("onBindViewHolder",position.toString())
     }
 
+    private fun deleteLecture(context: Context, viewModel: FirstSubjectViewModel, position: Int) {
+        val builder = AlertDialog.Builder(context)
+        builder.setPositiveButton("Yes"){_,_ ->
+            viewModel.deleteLecture(details[position])
+            Toast.makeText(context,"Successfully Deleted",Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("No"){_,_ ->
+            Toast.makeText(context,"Cancelled",Toast.LENGTH_SHORT).show()
+        }
+        builder.setTitle("Delete Lecture")
+        builder.setMessage("Do you want to delete the lecture?")
+        builder.create().show()
+    }
 
     override fun getItemCount(): Int {
         return details.size

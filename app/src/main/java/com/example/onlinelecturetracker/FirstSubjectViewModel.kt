@@ -33,4 +33,16 @@ class FirstSubjectViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
+    fun deleteLecture(lecture: LectureDetails){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteLecture(lecture)
+        }
+    }
+
+    fun deleteAllLectures() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllLectures()
+        }
+    }
+
 }

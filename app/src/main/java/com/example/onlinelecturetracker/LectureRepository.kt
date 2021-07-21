@@ -15,4 +15,12 @@ class LectureRepository(private val lectureDAO: LectureDAO) {
         lectureDAO.updateLecture(lecture)
     }
 
+    suspend fun deleteLecture(lecture: LectureDetails){
+        lectureDAO.deleteLecture(lecture)
+    }
+
+    suspend fun deleteAllLectures(){
+        lectureDAO.deleteAllLectures()
+    }
+
 }
