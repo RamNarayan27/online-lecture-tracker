@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">Online Lecture Tracker</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_new_class">Add new class</string>
     <string name="status">status</string>
-    <string name="type">Type</string>
-    <string name="lecture_name">Lecture Name</string>
+    <string name="type">Type : </string>
+    <string name="lecture_name">Lecture Name : </string>
     <string name="lecture">Lecture #</string>
     <string name="unit">Unit #</string>
     <string name="enter_class_name">Enter Class Name</string>
@@ -17,4 +16,8 @@
     <string name="enter_lecture_status">Enter Lecture Status</string>
     <string name="enter_subject">Enter Subject</string>
     <string name="submit">Submit</string>
+    <string name="duration">Duration : </string>
+    <string name="total_lecture_duration">Total Lecture Duration</string>
+    <string name="mins">mins</string>
+    <string name="hrs">hrs</string>
 </resources>

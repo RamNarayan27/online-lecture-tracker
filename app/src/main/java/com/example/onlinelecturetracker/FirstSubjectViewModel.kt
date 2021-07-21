@@ -12,16 +12,24 @@ class FirstSubjectViewModel(application: Application) : AndroidViewModel(applica
 
     val readAllData: LiveData<List<LectureDetails>>
     private val repository: LectureRepository
+    val totalLectureDuration: LiveData<Int>
 
     init {
         val lectureDAO = LectureDatabase.getDatabase(application).lectureDao()
         repository = LectureRepository(lectureDAO)
         readAllData = repository.readAllData
+        totalLectureDuration = repository.totalLectureDuration
     }
 
     fun addLecture(lecture: LectureDetails){
         viewModelScope.launch(Dispatchers.IO) {
             repository.addLecture(lecture)
+        }
+    }
+
+    fun updateLecture(lecture: LectureDetails){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateLecture(lecture)
         }
     }
 

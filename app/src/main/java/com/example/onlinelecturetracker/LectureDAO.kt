@@ -25,4 +25,7 @@ interface LectureDAO {
 
     @Update
     fun updateLecture(lecture: LectureDetails)
+
+    @Query("SELECT SUM(duration) from lectures_table WHERE status='Pending'")
+    fun getTotalLectureDuration() : LiveData<Int>
 }
