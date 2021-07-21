@@ -39,7 +39,7 @@ class FirstSubject : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bdaAdapter = BDAAdapter()
+        val bdaAdapter = BDAAdapter(requireContext())
         floatingActionButton = view.findViewById(R.id.fab_bda)
         bdaRecyclerView = view.findViewById(R.id.recycler_view_bda)
         totalLectureDurationHours = view.findViewById(R.id.duration_hours_value)

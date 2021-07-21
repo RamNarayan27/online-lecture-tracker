@@ -20,4 +20,5 @@
     <string name="total_lecture_duration">Total Lecture Duration</string>
     <string name="mins">mins</string>
     <string name="hrs">hrs</string>
+    <string name="update_lecture">Update Lecture</string>
 </resources>

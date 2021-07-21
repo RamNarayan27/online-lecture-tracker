@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineLectureTracker">
+        <activity android:name=".UpdateLecture"
+            android:label="@string/update_lecture"/>
         <activity
             android:name=".NewClassEntry"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/add_new_class" />
+            android:label="@string/add_new_class"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

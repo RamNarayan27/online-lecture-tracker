@@ -12,7 +12,7 @@ class NewClassEntry : AppCompatActivity() {
         setContentView(R.layout.activity_new_class_entry)
         val message = intent.getStringExtra("Subject")
         val viewModel = ViewModelProvider(this).get(FirstSubjectViewModel::class.java)
-        val submitButton = findViewById<Button>(R.id.submit)
+        val submitButton = findViewById<Button>(R.id.submit_update)
 //        when(message) {
 //            "BDA" -> { Toast.makeText(this,"Hello From BDA",Toast.LENGTH_SHORT).show() }
 //            "Cloud" -> { Toast.makeText(this,"Hello From Cloud",Toast.LENGTH_SHORT).show() }
@@ -22,17 +22,20 @@ class NewClassEntry : AppCompatActivity() {
 //        }
         submitButton.setOnClickListener{
             addDataToDatabase(viewModel)
+            /**
+             * TODO : Add code to navigate back to original fragment.
+             * */
         }
 //        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
     }
     private fun addDataToDatabase(viewModel: FirstSubjectViewModel) {
-        val unitNumber = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.unit_number_edit_text).text.toString().toInt()
-        val lectureNumber = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.lecture_number_edit_text).text.toString().toInt()
-        val lectureName = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.lecture_name_edit_text).text.toString()
-        val type = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.lecture_type_edit_text).text.toString()
-        val duration = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.duration_edit_text).text.toString().toInt()
-        val status = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.lecture_status_edit_text).text.toString()
-        val subject = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.subject_edit_text).text.toString()
+        val unitNumber = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.unit_number_edit_text_update).text.toString().toInt()
+        val lectureNumber = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.lecture_number_edit_text_update).text.toString().toInt()
+        val lectureName = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.lecture_name_edit_text_update).text.toString()
+        val type = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.lecture_type_edit_text_update).text.toString()
+        val duration = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.duration_edit_text_update).text.toString().toInt()
+        val status = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.lecture_status_edit_text_update).text.toString()
+        val subject = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.subject_edit_text_update).text.toString()
         val lecture = LectureDetails(0,unitNumber,lectureNumber, lectureName, type, duration, status, subject)
         viewModel.addLecture(lecture)
         Toast.makeText(this,"Successfully Added",Toast.LENGTH_SHORT).show()
