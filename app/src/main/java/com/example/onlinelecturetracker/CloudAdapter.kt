@@ -12,17 +12,17 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class BDAAdapter(private val context: Context, private val viewModel: FirstSubjectViewModel) :
-    RecyclerView.Adapter<BDAAdapter.BDAViewHolder>() {
+class CloudAdapter(private val context: Context, private val viewModel: SecondSubjectViewModel):
+    RecyclerView.Adapter<CloudAdapter.CloudViewHolder>() {
 
     private var details = emptyList<LectureDetails>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BDAViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CloudViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.lecture_card, parent, false)
-        return BDAViewHolder(view)
+        return CloudViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BDAViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CloudViewHolder, position: Int) {
         holder.unitNumber.text = details[position].unitNumber.toString()
         holder.lectureNumber.text = details[position].lectureNumber.toString()
         holder.lectureName.text = details[position].lectureName
@@ -48,22 +48,22 @@ class BDAAdapter(private val context: Context, private val viewModel: FirstSubje
         }
     }
 
-    private fun deleteLecture(context: Context, viewModel: FirstSubjectViewModel, position: Int) {
+    override fun getItemCount(): Int {
+        return details.size
+    }
+
+    private fun deleteLecture(context: Context, viewModel: SecondSubjectViewModel, position: Int) {
         val builder = AlertDialog.Builder(context)
         builder.setPositiveButton("Yes"){_,_ ->
             viewModel.deleteLecture(details[position])
-            Toast.makeText(context,"Successfully Deleted",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"Successfully Deleted", Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("No"){_,_ ->
-            Toast.makeText(context,"Cancelled",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"Cancelled", Toast.LENGTH_SHORT).show()
         }
         builder.setTitle("Delete Lecture")
         builder.setMessage("Do you want to delete the lecture?")
         builder.create().show()
-    }
-
-    override fun getItemCount(): Int {
-        return details.size
     }
 
     fun setData(lectures: List<LectureDetails>){
@@ -71,7 +71,7 @@ class BDAAdapter(private val context: Context, private val viewModel: FirstSubje
         notifyDataSetChanged()
     }
 
-    class BDAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class CloudViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val unitNumber: TextView = itemView.findViewById(R.id.unit_number_input_layout)
         val lectureNumber: TextView = itemView.findViewById(R.id.lecture_number_input_layout)
         val lectureName: TextView = itemView.findViewById(R.id.lecture_name_input_layout)
@@ -80,5 +80,4 @@ class BDAAdapter(private val context: Context, private val viewModel: FirstSubje
         val duration: TextView = itemView.findViewById(R.id.duration)
         val card: CardView = itemView.findViewById(R.id.card_layout)
     }
-
 }

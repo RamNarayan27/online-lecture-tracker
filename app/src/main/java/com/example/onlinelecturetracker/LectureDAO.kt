@@ -9,16 +9,16 @@ interface LectureDAO {
     fun getBDARecords() : LiveData<List<LectureDetails>>
 
     @Query("SELECT * FROM lectures_table WHERE subject='Cloud'")
-    fun getCloudRecords() : List<LectureDetails>
+    fun getCloudRecords() : LiveData<List<LectureDetails>>
 
     @Query("SELECT * FROM lectures_table WHERE subject='PDS'")
-    fun getPDSRecords() : List<LectureDetails>
+    fun getPDSRecords() : LiveData<List<LectureDetails>>
 
     @Query("SELECT * FROM lectures_table WHERE subject='Embedded'")
-    fun getEmbeddedRecords() : List<LectureDetails>
+    fun getEmbeddedRecords() : LiveData<List<LectureDetails>>
 
     @Query("SELECT * FROM lectures_table WHERE subject='Elective'")
-    fun getElectiveRecords() : List<LectureDetails>
+    fun getElectiveRecords() : LiveData<List<LectureDetails>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(lecture: LectureDetails)
@@ -26,8 +26,20 @@ interface LectureDAO {
     @Update
     fun updateLecture(lecture: LectureDetails)
 
-    @Query("SELECT SUM(duration) from lectures_table WHERE status='Pending'")
-    fun getTotalLectureDuration() : LiveData<Int>
+    @Query("SELECT SUM(duration) from lectures_table WHERE status='Pending' AND subject='BDA'")
+    fun getTotalBDALecturesDuration() : LiveData<Int>
+
+    @Query("SELECT SUM(duration) from lectures_table WHERE status='Pending' AND subject='Cloud'")
+    fun getTotalCloudLecturesDuration() : LiveData<Int>
+
+    @Query("SELECT SUM(duration) from lectures_table WHERE status='Pending' AND subject='PDS'")
+    fun getTotalPDSLecturesDuration() : LiveData<Int>
+
+    @Query("SELECT SUM(duration) from lectures_table WHERE status='Pending' AND subject='Embedded'")
+    fun getTotalEmbeddedLecturesDuration() : LiveData<Int>
+
+    @Query("SELECT SUM(duration) from lectures_table WHERE status='Pending' AND subject='Elective'")
+    fun getTotalElectiveLecturesDuration() : LiveData<Int>
 
     @Delete
     suspend fun deleteLecture(lecture: LectureDetails)

@@ -16,11 +16,20 @@ class UpdateLecture : AppCompatActivity() {
     private lateinit var subject: TextInputEditText
     private lateinit var submitButton: Button
     private lateinit var firstSubjectViewModel: FirstSubjectViewModel
+    private lateinit var secondSubjectViewModel: SecondSubjectViewModel
+    private lateinit var thirdSubjectViewModel: ThirdSubjectViewModel
+    private lateinit var fourthSubjectViewModel: FourthSubjectViewModel
+    private lateinit var fifthSubjectViewModel: FifthSubjectViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_lecture)
         firstSubjectViewModel = ViewModelProvider(this).get(FirstSubjectViewModel::class.java)
+        secondSubjectViewModel = ViewModelProvider(this).get(SecondSubjectViewModel::class.java)
+        thirdSubjectViewModel = ViewModelProvider(this).get(ThirdSubjectViewModel::class.java)
+        fourthSubjectViewModel = ViewModelProvider(this).get(FourthSubjectViewModel::class.java)
+        fifthSubjectViewModel = ViewModelProvider(this).get(FifthSubjectViewModel::class.java)
+
         val lecture = intent.getParcelableExtra<LectureDetails>("Object")
 
         lectureNumber = findViewById(R.id.lecture_number_edit_text)
@@ -55,16 +64,16 @@ class UpdateLecture : AppCompatActivity() {
                     firstSubjectViewModel.updateLecture(updatedLecture)
                 }
                 "Cloud" -> {
-
+                    secondSubjectViewModel.updateLecture(updatedLecture)
                 }
                 "PDS" -> {
-
+                    thirdSubjectViewModel.updateLecture(updatedLecture)
                 }
                 "Embedded" -> {
-
+                    fourthSubjectViewModel.updateLecture(updatedLecture)
                 }
                 "Elective" -> {
-
+                    fifthSubjectViewModel.updateLecture(updatedLecture)
                 }
             }
             onBackPressed()

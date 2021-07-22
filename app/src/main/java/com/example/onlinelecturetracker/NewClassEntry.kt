@@ -2,6 +2,7 @@ package com.example.onlinelecturetracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,7 @@ class NewClassEntry : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_class_entry)
         val fragmentName = intent.getStringExtra("FragmentName")
+        Log.i("extra",fragmentName.toString())
         val firstSubjectViewModel = ViewModelProvider(this).get(FirstSubjectViewModel::class.java)
         val secondSubjectViewModel = ViewModelProvider(this).get(SecondSubjectViewModel::class.java)
         val thirdSubjectViewModel = ViewModelProvider(this).get(ThirdSubjectViewModel::class.java)
@@ -33,16 +35,16 @@ class NewClassEntry : AppCompatActivity() {
                     firstSubjectViewModel.addLecture(lecture)
                 }
                 "SecondSubject" -> {
-
+                    secondSubjectViewModel.addLecture(lecture)
                 }
                 "ThirdSubject" -> {
-
+                    thirdSubjectViewModel.addLecture(lecture)
                 }
                 "FourthSubject" -> {
-
+                    fourthSubjectViewModel.addLecture(lecture)
                 }
                 "FifthSubject" -> {
-
+                    fifthSubjectViewModel.addLecture(lecture)
                 }
             }
             Toast.makeText(this,"Successfully Added",Toast.LENGTH_SHORT).show()

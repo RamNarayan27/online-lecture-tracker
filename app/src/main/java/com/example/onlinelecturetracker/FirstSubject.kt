@@ -16,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class FirstSubject : Fragment() {
 
-    private lateinit var viewModel: FirstSubjectViewModel
+    private lateinit var firstSubjectViewModel: FirstSubjectViewModel
     private lateinit var floatingActionButton: FloatingActionButton
     private lateinit var bdaRecyclerView: RecyclerView
     private lateinit var itemTouchHelperCallback: ItemTouchHelper.SimpleCallback
@@ -31,7 +31,7 @@ class FirstSubject : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProvider(this).get(FirstSubjectViewModel::class.java)
+        firstSubjectViewModel = ViewModelProvider(this).get(FirstSubjectViewModel::class.java)
 
         val view = inflater.inflate(R.layout.first_subject_fragment, container, false)
         return view
@@ -39,20 +39,20 @@ class FirstSubject : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bdaAdapter = BDAAdapter(requireContext(),viewModel)
+        val bdaAdapter = BDAAdapter(requireContext(),firstSubjectViewModel)
         floatingActionButton = view.findViewById(R.id.fab_bda)
         bdaRecyclerView = view.findViewById(R.id.recycler_view_bda)
-        totalLectureDurationHours = view.findViewById(R.id.duration_hours_value)
-        totalLectureDurationMins = view.findViewById(R.id.duration_mins_value)
+        totalLectureDurationHours = view.findViewById(R.id.duration_hours_value_first)
+        totalLectureDurationMins = view.findViewById(R.id.duration_mins_value_first)
         bdaRecyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.readAllData.observe(viewLifecycleOwner, { lectures ->
+        firstSubjectViewModel.readAllData.observe(viewLifecycleOwner, { lectures ->
             bdaAdapter.setData(lectures)
             lectureDetails = lectures
         })
         bdaRecyclerView.adapter = bdaAdapter
-        viewModel.totalLectureDuration.observe(viewLifecycleOwner, {
-            val hours = viewModel.totalLectureDuration.value?.div(60) ?: zero
-            val mins = viewModel.totalLectureDuration.value?.rem(60) ?: zero
+        firstSubjectViewModel.totalLectureDuration.observe(viewLifecycleOwner, {
+            val hours = firstSubjectViewModel.totalLectureDuration.value?.div(60) ?: zero
+            val mins = firstSubjectViewModel.totalLectureDuration.value?.rem(60) ?: zero
             totalLectureDurationHours.text = hours.toString()
             totalLectureDurationMins.text = mins.toString()
         })
@@ -80,7 +80,7 @@ class FirstSubject : Fragment() {
                             "Done",
                             lectureDetails[viewHolder.layoutPosition].subject
                         )
-                        viewModel.updateLecture(updatedLecture)
+                        firstSubjectViewModel.updateLecture(updatedLecture)
                         bdaAdapter.notifyItemChanged(viewHolder.layoutPosition)
                     }
                     ItemTouchHelper.LEFT -> {
@@ -94,7 +94,7 @@ class FirstSubject : Fragment() {
                             "Pending",
                             lectureDetails[viewHolder.layoutPosition].subject
                         )
-                        viewModel.updateLecture(updatedLecture)
+                        firstSubjectViewModel.updateLecture(updatedLecture)
                         bdaAdapter.notifyItemChanged(viewHolder.layoutPosition)
                     }
                 }
@@ -129,7 +129,7 @@ class FirstSubject : Fragment() {
     private fun deleteAllLectures(){
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){_,_ ->
-            viewModel.deleteAllLectures()
+            firstSubjectViewModel.deleteAllLectures()
             Toast.makeText(context,"Successfully Deleted",Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("No"){_,_ ->

@@ -4,8 +4,16 @@ import androidx.lifecycle.LiveData
 
 class LectureRepository(private val lectureDAO: LectureDAO) {
 
-    val readAllData: LiveData<List<LectureDetails>> = lectureDAO.getBDARecords()
-    val totalLectureDuration: LiveData<Int> = lectureDAO.getTotalLectureDuration()
+    val readAllBDAData: LiveData<List<LectureDetails>> = lectureDAO.getBDARecords()
+    val totalBDALecturesDuration: LiveData<Int> = lectureDAO.getTotalBDALecturesDuration()
+    val readAllCloudData: LiveData<List<LectureDetails>> = lectureDAO.getCloudRecords()
+    val totalCloudLecturesDuration: LiveData<Int> = lectureDAO.getTotalCloudLecturesDuration()
+    val readAllPDSData: LiveData<List<LectureDetails>> = lectureDAO.getPDSRecords()
+    val totalPDSLecturesDuration: LiveData<Int> = lectureDAO.getTotalPDSLecturesDuration()
+    val readAllEmbeddedData: LiveData<List<LectureDetails>> = lectureDAO.getEmbeddedRecords()
+    val totalEmbeddedLecturesDuration: LiveData<Int> = lectureDAO.getTotalEmbeddedLecturesDuration()
+    val readAllElectiveData: LiveData<List<LectureDetails>> = lectureDAO.getElectiveRecords()
+    val totalElectiveLecturesDuration: LiveData<Int> = lectureDAO.getTotalElectiveLecturesDuration()
 
     suspend fun addLecture(lecture: LectureDetails){
         lectureDAO.insert(lecture)

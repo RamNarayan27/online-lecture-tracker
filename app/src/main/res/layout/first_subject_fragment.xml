@@ -7,7 +7,7 @@
     tools:context=".FirstSubject">
 
     <TextView
-        android:id="@+id/total_lecture_duration"
+        android:id="@+id/total_lecture_duration_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -20,19 +20,19 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
-        android:id="@+id/duration_mins_value"
+        android:id="@+id/duration_mins_value_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="6dp"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/duration_mins"
+        app:layout_constraintEnd_toStartOf="@+id/duration_mins_first"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
-        android:id="@+id/duration_mins"
+        android:id="@+id/duration_mins_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
-        android:id="@+id/duration_hours"
+        android:id="@+id/duration_hours_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -53,19 +53,19 @@
         android:text="@string/hrs"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/duration_mins_value"
+        app:layout_constraintEnd_toStartOf="@+id/duration_mins_value_first"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
-        android:id="@+id/duration_hours_value"
+        android:id="@+id/duration_hours_value_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="6dp"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/duration_hours"
+        app:layout_constraintEnd_toStartOf="@+id/duration_hours_first"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
@@ -80,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/duration_mins" />
+        app:layout_constraintTop_toBottomOf="@id/duration_mins_first" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_bda"
