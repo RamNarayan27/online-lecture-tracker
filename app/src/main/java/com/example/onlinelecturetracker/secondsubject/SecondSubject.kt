@@ -1,24 +1,26 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.secondsubject
 
 import android.app.AlertDialog
 import android.content.Intent
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
+import androidx.fragment.app.Fragment
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.NewClassEntry
+import com.example.onlinelecturetracker.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+class SecondSubject : Fragment() {
 
-class FirstSubject : Fragment() {
-
-    private lateinit var firstSubjectViewModel: FirstSubjectViewModel
+    private lateinit var secondSubjectViewModel: SecondSubjectViewModel
     private lateinit var floatingActionButton: FloatingActionButton
-    private lateinit var bdaRecyclerView: RecyclerView
+    private lateinit var cloudRecyclerView: RecyclerView
     private lateinit var itemTouchHelperCallback: ItemTouchHelper.SimpleCallback
     private lateinit var itemTouchHelper: ItemTouchHelper
     private lateinit var lectureDetails: List<LectureDetails>
@@ -31,28 +33,28 @@ class FirstSubject : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        firstSubjectViewModel = ViewModelProvider(this).get(FirstSubjectViewModel::class.java)
+        secondSubjectViewModel = ViewModelProvider(this).get(SecondSubjectViewModel::class.java)
 
-        val view = inflater.inflate(R.layout.first_subject_fragment, container, false)
+        val view = inflater.inflate(R.layout.second_subject_fragment, container, false)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bdaAdapter = BDAAdapter(requireContext(),firstSubjectViewModel)
-        floatingActionButton = view.findViewById(R.id.fab_bda)
-        bdaRecyclerView = view.findViewById(R.id.recycler_view_bda)
-        totalLectureDurationHours = view.findViewById(R.id.duration_hours_value_first)
-        totalLectureDurationMins = view.findViewById(R.id.duration_mins_value_first)
-        bdaRecyclerView.layoutManager = LinearLayoutManager(context)
-        firstSubjectViewModel.readAllData.observe(viewLifecycleOwner, { lectures ->
-            bdaAdapter.setData(lectures)
+        val cloudAdapter = CloudAdapter(requireContext(), secondSubjectViewModel)
+        floatingActionButton = view.findViewById(R.id.fab_cloud)
+        cloudRecyclerView = view.findViewById(R.id.recycler_view_cloud)
+        totalLectureDurationHours = view.findViewById(R.id.duration_hours_value_second)
+        totalLectureDurationMins = view.findViewById(R.id.duration_mins_value_second)
+        cloudRecyclerView.layoutManager = LinearLayoutManager(context)
+        secondSubjectViewModel.readAllData.observe(viewLifecycleOwner, { lectures ->
+            cloudAdapter.setData(lectures)
             lectureDetails = lectures
         })
-        bdaRecyclerView.adapter = bdaAdapter
-        firstSubjectViewModel.totalLectureDuration.observe(viewLifecycleOwner, {
-            val hours = firstSubjectViewModel.totalLectureDuration.value?.div(60) ?: zero
-            val mins = firstSubjectViewModel.totalLectureDuration.value?.rem(60) ?: zero
+        cloudRecyclerView.adapter = cloudAdapter
+        secondSubjectViewModel.totalLectureDuration.observe(viewLifecycleOwner, {
+            val hours = secondSubjectViewModel.totalLectureDuration.value?.div(60) ?: zero
+            val mins = secondSubjectViewModel.totalLectureDuration.value?.rem(60) ?: zero
             totalLectureDurationHours.text = hours.toString()
             totalLectureDurationMins.text = mins.toString()
         })
@@ -80,8 +82,8 @@ class FirstSubject : Fragment() {
                             "Done",
                             lectureDetails[viewHolder.layoutPosition].subject
                         )
-                        firstSubjectViewModel.updateLecture(updatedLecture)
-                        bdaAdapter.notifyItemChanged(viewHolder.layoutPosition)
+                        secondSubjectViewModel.updateLecture(updatedLecture)
+                        cloudAdapter.notifyItemChanged(viewHolder.layoutPosition)
                     }
                     ItemTouchHelper.LEFT -> {
                         val updatedLecture = LectureDetails(
@@ -94,8 +96,8 @@ class FirstSubject : Fragment() {
                             "Pending",
                             lectureDetails[viewHolder.layoutPosition].subject
                         )
-                        firstSubjectViewModel.updateLecture(updatedLecture)
-                        bdaAdapter.notifyItemChanged(viewHolder.layoutPosition)
+                        secondSubjectViewModel.updateLecture(updatedLecture)
+                        cloudAdapter.notifyItemChanged(viewHolder.layoutPosition)
                     }
                 }
             }
@@ -103,37 +105,37 @@ class FirstSubject : Fragment() {
         }
 
         itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
-        itemTouchHelper.attachToRecyclerView(bdaRecyclerView)
+        itemTouchHelper.attachToRecyclerView(cloudRecyclerView)
 
         setHasOptionsMenu(true)
 
         floatingActionButton.setOnClickListener {
             val intent = Intent(context, NewClassEntry::class.java).apply {
-                putExtra("FragmentName","FirstSubject")
+                putExtra("FragmentName", "SecondSubject")
             }
             startActivity(intent)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.delete_menu,menu)
+        inflater.inflate(R.menu.delete_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_delete){
+        if (item.itemId == R.id.menu_delete) {
             deleteAllLectures()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun deleteAllLectures(){
+    private fun deleteAllLectures() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){_,_ ->
-            firstSubjectViewModel.deleteAllLectures()
-            Toast.makeText(context,"Successfully Deleted",Toast.LENGTH_SHORT).show()
+        builder.setPositiveButton("Yes") { _, _ ->
+            secondSubjectViewModel.deleteAllLectures()
+            Toast.makeText(context, "Successfully Deleted", Toast.LENGTH_SHORT).show()
         }
-        builder.setNegativeButton("No"){_,_ ->
-            Toast.makeText(context,"Cancelled",Toast.LENGTH_SHORT).show()
+        builder.setNegativeButton("No") { _, _ ->
+            Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show()
         }
         builder.setTitle("Delete All Lectures")
         builder.setMessage("Do you want to delete all the lectures?")

@@ -1,10 +1,9 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.lecturedata
 
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.versionedparcelable.VersionedParcelize
 
 @Entity(tableName = "lectures_table")
 data class LectureDetails(

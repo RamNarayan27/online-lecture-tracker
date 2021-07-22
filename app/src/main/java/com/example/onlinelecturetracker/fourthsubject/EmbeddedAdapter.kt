@@ -1,4 +1,4 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.fourthsubject
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,18 +11,20 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.R
+import com.example.onlinelecturetracker.UpdateLecture
 
-class CloudAdapter(private val context: Context, private val viewModel: SecondSubjectViewModel):
-    RecyclerView.Adapter<CloudAdapter.CloudViewHolder>() {
+class EmbeddedAdapter(private val context: Context, private val viewModel: FourthSubjectViewModel): RecyclerView.Adapter<EmbeddedAdapter.EmbeddedViewHolder>() {
 
     private var details = emptyList<LectureDetails>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CloudViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmbeddedViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.lecture_card, parent, false)
-        return CloudViewHolder(view)
+        return EmbeddedViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CloudViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EmbeddedViewHolder, position: Int) {
         holder.unitNumber.text = details[position].unitNumber.toString()
         holder.lectureNumber.text = details[position].lectureNumber.toString()
         holder.lectureName.text = details[position].lectureName
@@ -37,7 +39,7 @@ class CloudAdapter(private val context: Context, private val viewModel: SecondSu
         }
         holder.duration.text = details[position].duration.toString()
         holder.card.setOnClickListener{
-            val intent = Intent(this.context,UpdateLecture::class.java).apply{
+            val intent = Intent(this.context, UpdateLecture::class.java).apply{
                 putExtra("Object",details[position])
             }
             context.startActivity(intent)
@@ -48,11 +50,7 @@ class CloudAdapter(private val context: Context, private val viewModel: SecondSu
         }
     }
 
-    override fun getItemCount(): Int {
-        return details.size
-    }
-
-    private fun deleteLecture(context: Context, viewModel: SecondSubjectViewModel, position: Int) {
+    private fun deleteLecture(context: Context, viewModel: FourthSubjectViewModel, position: Int) {
         val builder = AlertDialog.Builder(context)
         builder.setPositiveButton("Yes"){_,_ ->
             viewModel.deleteLecture(details[position])
@@ -66,12 +64,16 @@ class CloudAdapter(private val context: Context, private val viewModel: SecondSu
         builder.create().show()
     }
 
+    override fun getItemCount(): Int {
+        return details.size
+    }
+
     fun setData(lectures: List<LectureDetails>){
         this.details = lectures
         notifyDataSetChanged()
     }
 
-    class CloudViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class EmbeddedViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val unitNumber: TextView = itemView.findViewById(R.id.unit_number_input_layout)
         val lectureNumber: TextView = itemView.findViewById(R.id.lecture_number_input_layout)
         val lectureName: TextView = itemView.findViewById(R.id.lecture_name_input_layout)
@@ -80,4 +82,5 @@ class CloudAdapter(private val context: Context, private val viewModel: SecondSu
         val duration: TextView = itemView.findViewById(R.id.duration)
         val card: CardView = itemView.findViewById(R.id.card_layout)
     }
+
 }

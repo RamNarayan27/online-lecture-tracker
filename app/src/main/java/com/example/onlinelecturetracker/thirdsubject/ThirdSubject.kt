@@ -1,4 +1,4 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.thirdsubject
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -11,6 +11,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.NewClassEntry
+import com.example.onlinelecturetracker.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ThirdSubject : Fragment() {

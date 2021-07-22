@@ -1,9 +1,12 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.firstsubject
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.onlinelecturetracker.lecturedata.LectureDatabase
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.lecturedata.LectureRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

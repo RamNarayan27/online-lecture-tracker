@@ -1,4 +1,4 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.lecturedata
 
 import android.content.Context
 import androidx.room.Database

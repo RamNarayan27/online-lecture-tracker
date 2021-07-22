@@ -1,4 +1,4 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.firstsubject
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,17 +11,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.R
+import com.example.onlinelecturetracker.UpdateLecture
 
-class EmbeddedAdapter(private val context: Context, private val viewModel: FourthSubjectViewModel): RecyclerView.Adapter<EmbeddedAdapter.EmbeddedViewHolder>() {
+class BDAAdapter(private val context: Context, private val viewModel: FirstSubjectViewModel) :
+    RecyclerView.Adapter<BDAAdapter.BDAViewHolder>() {
 
     private var details = emptyList<LectureDetails>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmbeddedViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BDAViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.lecture_card, parent, false)
-        return EmbeddedViewHolder(view)
+        return BDAViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: EmbeddedViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BDAViewHolder, position: Int) {
         holder.unitNumber.text = details[position].unitNumber.toString()
         holder.lectureNumber.text = details[position].lectureNumber.toString()
         holder.lectureName.text = details[position].lectureName
@@ -36,7 +40,7 @@ class EmbeddedAdapter(private val context: Context, private val viewModel: Fourt
         }
         holder.duration.text = details[position].duration.toString()
         holder.card.setOnClickListener{
-            val intent = Intent(this.context,UpdateLecture::class.java).apply{
+            val intent = Intent(this.context, UpdateLecture::class.java).apply{
                 putExtra("Object",details[position])
             }
             context.startActivity(intent)
@@ -47,14 +51,14 @@ class EmbeddedAdapter(private val context: Context, private val viewModel: Fourt
         }
     }
 
-    private fun deleteLecture(context: Context, viewModel: FourthSubjectViewModel, position: Int) {
+    private fun deleteLecture(context: Context, viewModel: FirstSubjectViewModel, position: Int) {
         val builder = AlertDialog.Builder(context)
         builder.setPositiveButton("Yes"){_,_ ->
             viewModel.deleteLecture(details[position])
-            Toast.makeText(context,"Successfully Deleted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"Successfully Deleted",Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("No"){_,_ ->
-            Toast.makeText(context,"Cancelled", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"Cancelled",Toast.LENGTH_SHORT).show()
         }
         builder.setTitle("Delete Lecture")
         builder.setMessage("Do you want to delete the lecture?")
@@ -70,7 +74,7 @@ class EmbeddedAdapter(private val context: Context, private val viewModel: Fourt
         notifyDataSetChanged()
     }
 
-    class EmbeddedViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class BDAViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val unitNumber: TextView = itemView.findViewById(R.id.unit_number_input_layout)
         val lectureNumber: TextView = itemView.findViewById(R.id.lecture_number_input_layout)
         val lectureName: TextView = itemView.findViewById(R.id.lecture_name_input_layout)

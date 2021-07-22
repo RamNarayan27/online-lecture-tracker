@@ -4,6 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
+import com.example.onlinelecturetracker.fifthsubject.FifthSubjectViewModel
+import com.example.onlinelecturetracker.firstsubject.FirstSubjectViewModel
+import com.example.onlinelecturetracker.fourthsubject.FourthSubjectViewModel
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.secondsubject.SecondSubjectViewModel
+import com.example.onlinelecturetracker.thirdsubject.ThirdSubjectViewModel
 import com.google.android.material.textfield.TextInputEditText
 
 class UpdateLecture : AppCompatActivity() {

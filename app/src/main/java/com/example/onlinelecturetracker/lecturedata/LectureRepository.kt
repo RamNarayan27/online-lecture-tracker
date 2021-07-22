@@ -1,6 +1,8 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.lecturedata
 
 import androidx.lifecycle.LiveData
+import com.example.onlinelecturetracker.lecturedata.LectureDAO
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
 
 class LectureRepository(private val lectureDAO: LectureDAO) {
 

@@ -1,4 +1,4 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.fourthsubject
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -11,13 +11,16 @@ import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.NewClassEntry
+import com.example.onlinelecturetracker.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class FifthSubject : Fragment() {
+class FourthSubject : Fragment() {
 
-    private lateinit var fifthSubjectViewModel: FifthSubjectViewModel
+    private lateinit var fourthSubjectViewModel: FourthSubjectViewModel
     private lateinit var floatingActionButton: FloatingActionButton
-    private lateinit var electiveRecyclerView: RecyclerView
+    private lateinit var embeddedRecyclerView: RecyclerView
     private lateinit var itemTouchHelperCallback: ItemTouchHelper.SimpleCallback
     private lateinit var itemTouchHelper: ItemTouchHelper
     private lateinit var lectureDetails: List<LectureDetails>
@@ -30,28 +33,28 @@ class FifthSubject : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        fifthSubjectViewModel = ViewModelProvider(this).get(FifthSubjectViewModel::class.java)
+        fourthSubjectViewModel = ViewModelProvider(this).get(FourthSubjectViewModel::class.java)
 
-        val view = inflater.inflate(R.layout.fifth_subject_fragment, container, false)
+        val view = inflater.inflate(R.layout.fourth_subject_fragment, container, false)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val electiveAdapter = ElectiveAdapter(requireContext(), fifthSubjectViewModel)
-        floatingActionButton = view.findViewById(R.id.fab_elective)
-        electiveRecyclerView = view.findViewById(R.id.recycler_view_elective)
-        totalLectureDurationHours = view.findViewById(R.id.duration_hours_value_fifth)
-        totalLectureDurationMins = view.findViewById(R.id.duration_mins_value_fifth)
-        electiveRecyclerView.layoutManager = LinearLayoutManager(context)
-        fifthSubjectViewModel.readAllData.observe(viewLifecycleOwner, { lectures ->
-            electiveAdapter.setData(lectures)
+        val embeddedAdapter = EmbeddedAdapter(requireContext(), fourthSubjectViewModel)
+        floatingActionButton = view.findViewById(R.id.fab_embedded)
+        embeddedRecyclerView = view.findViewById(R.id.recycler_view_embedded)
+        totalLectureDurationHours = view.findViewById(R.id.duration_hours_value_fourth)
+        totalLectureDurationMins = view.findViewById(R.id.duration_mins_value_fourth)
+        embeddedRecyclerView.layoutManager = LinearLayoutManager(context)
+        fourthSubjectViewModel.readAllData.observe(viewLifecycleOwner, { lectures ->
+            embeddedAdapter.setData(lectures)
             lectureDetails = lectures
         })
-        electiveRecyclerView.adapter = electiveAdapter
-        fifthSubjectViewModel.totalLectureDuration.observe(viewLifecycleOwner, {
-            val hours = fifthSubjectViewModel.totalLectureDuration.value?.div(60) ?: zero
-            val mins = fifthSubjectViewModel.totalLectureDuration.value?.rem(60) ?: zero
+        embeddedRecyclerView.adapter = embeddedAdapter
+        fourthSubjectViewModel.totalLectureDuration.observe(viewLifecycleOwner, {
+            val hours = fourthSubjectViewModel.totalLectureDuration.value?.div(60) ?: zero
+            val mins = fourthSubjectViewModel.totalLectureDuration.value?.rem(60) ?: zero
             totalLectureDurationHours.text = hours.toString()
             totalLectureDurationMins.text = mins.toString()
         })
@@ -79,8 +82,8 @@ class FifthSubject : Fragment() {
                             "Done",
                             lectureDetails[viewHolder.layoutPosition].subject
                         )
-                        fifthSubjectViewModel.updateLecture(updatedLecture)
-                        electiveAdapter.notifyItemChanged(viewHolder.layoutPosition)
+                        fourthSubjectViewModel.updateLecture(updatedLecture)
+                        embeddedAdapter.notifyItemChanged(viewHolder.layoutPosition)
                     }
                     ItemTouchHelper.LEFT -> {
                         val updatedLecture = LectureDetails(
@@ -93,8 +96,8 @@ class FifthSubject : Fragment() {
                             "Pending",
                             lectureDetails[viewHolder.layoutPosition].subject
                         )
-                        fifthSubjectViewModel.updateLecture(updatedLecture)
-                        electiveAdapter.notifyItemChanged(viewHolder.layoutPosition)
+                        fourthSubjectViewModel.updateLecture(updatedLecture)
+                        embeddedAdapter.notifyItemChanged(viewHolder.layoutPosition)
                     }
                 }
             }
@@ -102,13 +105,13 @@ class FifthSubject : Fragment() {
         }
 
         itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
-        itemTouchHelper.attachToRecyclerView(electiveRecyclerView)
+        itemTouchHelper.attachToRecyclerView(embeddedRecyclerView)
 
         setHasOptionsMenu(true)
 
         floatingActionButton.setOnClickListener {
             val intent = Intent(context, NewClassEntry::class.java).apply {
-                putExtra("FragmentName", "FifthSubject")
+                putExtra("FragmentName", "FourthSubject")
             }
             startActivity(intent)
         }
@@ -128,7 +131,7 @@ class FifthSubject : Fragment() {
     private fun deleteAllLectures() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes") { _, _ ->
-            fifthSubjectViewModel.deleteAllLectures()
+            fourthSubjectViewModel.deleteAllLectures()
             Toast.makeText(context, "Successfully Deleted", Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("No") { _, _ ->

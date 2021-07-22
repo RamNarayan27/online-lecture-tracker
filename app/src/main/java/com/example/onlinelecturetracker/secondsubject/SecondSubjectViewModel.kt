@@ -1,14 +1,16 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.secondsubject
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.onlinelecturetracker.lecturedata.LectureDatabase
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.lecturedata.LectureRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ThirdSubjectViewModel(application: Application) : AndroidViewModel(application) {
+class SecondSubjectViewModel(application: Application) : AndroidViewModel(application) {
 
     val readAllData: LiveData<List<LectureDetails>>
     private val repository: LectureRepository
@@ -17,8 +19,8 @@ class ThirdSubjectViewModel(application: Application) : AndroidViewModel(applica
     init {
         val lectureDAO = LectureDatabase.getDatabase(application).lectureDao()
         repository = LectureRepository(lectureDAO)
-        readAllData = repository.readAllPDSData
-        totalLectureDuration = repository.totalPDSLecturesDuration
+        readAllData = repository.readAllCloudData
+        totalLectureDuration = repository.totalCloudLecturesDuration
     }
 
     fun addLecture(lecture: LectureDetails){
@@ -44,4 +46,5 @@ class ThirdSubjectViewModel(application: Application) : AndroidViewModel(applica
             repository.deleteAllLectures()
         }
     }
+
 }

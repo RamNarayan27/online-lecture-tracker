@@ -1,4 +1,4 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.fifthsubject
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,6 +11,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.R
+import com.example.onlinelecturetracker.UpdateLecture
 
 class ElectiveAdapter(private val context: Context, private val viewModel: FifthSubjectViewModel) :
     RecyclerView.Adapter<ElectiveAdapter.ElectiveViewHolder>() {

@@ -6,6 +6,12 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.onlinelecturetracker.fifthsubject.FifthSubjectViewModel
+import com.example.onlinelecturetracker.firstsubject.FirstSubjectViewModel
+import com.example.onlinelecturetracker.fourthsubject.FourthSubjectViewModel
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.secondsubject.SecondSubjectViewModel
+import com.example.onlinelecturetracker.thirdsubject.ThirdSubjectViewModel
 import com.google.android.material.textfield.TextInputEditText
 
 class NewClassEntry : AppCompatActivity() {
@@ -13,7 +19,6 @@ class NewClassEntry : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_class_entry)
         val fragmentName = intent.getStringExtra("FragmentName")
-        Log.i("extra",fragmentName.toString())
         val firstSubjectViewModel = ViewModelProvider(this).get(FirstSubjectViewModel::class.java)
         val secondSubjectViewModel = ViewModelProvider(this).get(SecondSubjectViewModel::class.java)
         val thirdSubjectViewModel = ViewModelProvider(this).get(ThirdSubjectViewModel::class.java)

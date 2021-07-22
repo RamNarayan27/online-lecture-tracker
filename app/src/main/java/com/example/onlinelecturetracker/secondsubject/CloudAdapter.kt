@@ -1,4 +1,4 @@
-package com.example.onlinelecturetracker
+package com.example.onlinelecturetracker.secondsubject
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,18 +11,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.onlinelecturetracker.lecturedata.LectureDetails
+import com.example.onlinelecturetracker.R
+import com.example.onlinelecturetracker.UpdateLecture
 
-class PDSAdapter(private val context: Context, private val viewModel: ThirdSubjectViewModel) :
-    RecyclerView.Adapter<PDSAdapter.PDSViewHolder>() {
+class CloudAdapter(private val context: Context, private val viewModel: SecondSubjectViewModel):
+    RecyclerView.Adapter<CloudAdapter.CloudViewHolder>() {
 
     private var details = emptyList<LectureDetails>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PDSViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CloudViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.lecture_card, parent, false)
-        return PDSViewHolder(view)
+        return CloudViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PDSViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CloudViewHolder, position: Int) {
         holder.unitNumber.text = details[position].unitNumber.toString()
         holder.lectureNumber.text = details[position].lectureNumber.toString()
         holder.lectureName.text = details[position].lectureName
@@ -36,14 +39,14 @@ class PDSAdapter(private val context: Context, private val viewModel: ThirdSubje
             }
         }
         holder.duration.text = details[position].duration.toString()
-        holder.card.setOnClickListener {
-            val intent = Intent(this.context, UpdateLecture::class.java).apply {
-                putExtra("Object", details[position])
+        holder.card.setOnClickListener{
+            val intent = Intent(this.context, UpdateLecture::class.java).apply{
+                putExtra("Object",details[position])
             }
             context.startActivity(intent)
         }
         holder.card.setOnLongClickListener {
-            deleteLecture(context, viewModel, position)
+            deleteLecture(context,viewModel,position)
             true
         }
     }
@@ -52,7 +55,7 @@ class PDSAdapter(private val context: Context, private val viewModel: ThirdSubje
         return details.size
     }
 
-    private fun deleteLecture(context: Context, viewModel: ThirdSubjectViewModel, position: Int) {
+    private fun deleteLecture(context: Context, viewModel: SecondSubjectViewModel, position: Int) {
         val builder = AlertDialog.Builder(context)
         builder.setPositiveButton("Yes"){_,_ ->
             viewModel.deleteLecture(details[position])
@@ -71,7 +74,7 @@ class PDSAdapter(private val context: Context, private val viewModel: ThirdSubje
         notifyDataSetChanged()
     }
 
-    class PDSViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class CloudViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val unitNumber: TextView = itemView.findViewById(R.id.unit_number_input_layout)
         val lectureNumber: TextView = itemView.findViewById(R.id.lecture_number_input_layout)
         val lectureName: TextView = itemView.findViewById(R.id.lecture_name_input_layout)
@@ -80,5 +83,4 @@ class PDSAdapter(private val context: Context, private val viewModel: ThirdSubje
         val duration: TextView = itemView.findViewById(R.id.duration)
         val card: CardView = itemView.findViewById(R.id.card_layout)
     }
-
 }

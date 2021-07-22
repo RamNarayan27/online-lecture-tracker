@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FifthSubject">
+    tools:context=".fifthsubject.FifthSubject">
 
     <TextView
         android:id="@+id/total_lecture_duration_fifth"
